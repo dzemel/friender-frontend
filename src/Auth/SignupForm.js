@@ -20,8 +20,8 @@ function SignupForm() {
   const history = useHistory();
   const [formData, setFormData] = useState({
     password: "",
-    firstName: "",
-    lastName: "",
+    first_name: "",
+    last_name: "",
     hobbies: "",
     photo: "",
     zipcode: "",
@@ -38,13 +38,14 @@ function SignupForm() {
     "formErrors=",
     formErrors
   );
-
+  
   /** Handle form submit:
    *
    * Calls login func prop and, if successful, redirect to /companies.
    */
 
   async function handleSubmit(evt) {
+    console.log("Form Data is here", formData);
     evt.preventDefault();
     let result = await signup(formData);
     if (result.success) {
