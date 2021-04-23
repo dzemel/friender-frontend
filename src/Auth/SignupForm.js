@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-
-
+import { useContext } from "react";
+import AuthContext from "../AuthContext";
 
 /** Signup form.
  *
@@ -14,7 +14,9 @@ import { useHistory } from "react-router-dom";
  * Routed as /signup
  */
 
-function SignupForm({ signup }) {
+function SignupForm() {
+  const { signup } = useContext(AuthContext);
+  console.log("Signup", signup);
   const history = useHistory();
   const [formData, setFormData] = useState({
     password: "",
@@ -23,15 +25,18 @@ function SignupForm({ signup }) {
     hobbies: "",
     photo: "",
     zipcode: "",
-    friend_radius: ""
+    friend_radius: "",
   });
   const [formErrors, setFormErrors] = useState([]);
 
   console.debug(
-      "SignupForm",
-      "signup=", typeof signup,
-      "formData=", formData,
-      "formErrors=", formErrors,
+    "SignupForm",
+    "signup=",
+    typeof signup,
+    "formData=",
+    formData,
+    "formErrors=",
+    formErrors
   );
 
   /** Handle form submit:
@@ -52,94 +57,93 @@ function SignupForm({ signup }) {
   /** Update form data field */
   function handleChange(evt) {
     const { name, value } = evt.target;
-    setFormData(data => ({ ...data, [name]: value }));
+    setFormData((data) => ({ ...data, [name]: value }));
   }
 
   return (
-      <div className="SignupForm">
-        <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
-          <h2 className="mb-3">Sign Up</h2>
-          <div className="card">
-            <div className="card-body">
-              <form onSubmit={handleSubmit}>
-                
+    <div className="SignupForm">
+      <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+        <h2 className="mb-3">Sign Up</h2>
+        <div className="card">
+          <div className="card-body">
+            <form onSubmit={handleSubmit}>
               <div className="form-group">
-                  <label>First name</label>
-                  <input
-                      name="first_name"
-                      className="form-control"
-                      value={formData.first_name}
-                      onChange={handleChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <label>Last name</label>
-                  <input
-                      name="last_name"
-                      className="form-control"
-                      value={formData.last_name}
-                      onChange={handleChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <label>Password</label>
-                  <input
-                      type="password"
-                      name="password"
-                      className="form-control"
-                      value={formData.password}
-                      onChange={handleChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <label>Hobbies</label>
-                  <input
-                      name="hobbies"
-                      className="form-control"
-                      value={formData.hobbies}
-                      onChange={handleChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <label>Photo</label>
-                  <input
-                      name="photo"
-                      className="form-control"
-                      value={formData.photo}
-                      onChange={handleChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <label>Zip Code</label>
-                  <input
-                      name="zipcode"
-                      className="form-control"
-                      value={formData.zipcode}
-                      onChange={handleChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <label>Friend Radius</label>
-                  <input
-                      name="friend_radius"
-                      className="form-control"
-                      value={formData.friend_radius}
-                      onChange={handleChange}
-                  />
-                </div>
+                <label>First name</label>
+                <input
+                  name="first_name"
+                  className="form-control"
+                  value={formData.first_name}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="form-group">
+                <label>Last name</label>
+                <input
+                  name="last_name"
+                  className="form-control"
+                  value={formData.last_name}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="form-group">
+                <label>Password</label>
+                <input
+                  type="password"
+                  name="password"
+                  className="form-control"
+                  value={formData.password}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="form-group">
+                <label>Hobbies</label>
+                <input
+                  name="hobbies"
+                  className="form-control"
+                  value={formData.hobbies}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="form-group">
+                <label>Photo</label>
+                <input
+                  name="photo"
+                  className="form-control"
+                  value={formData.photo}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="form-group">
+                <label>Zip Code</label>
+                <input
+                  name="zipcode"
+                  className="form-control"
+                  value={formData.zipcode}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="form-group">
+                <label>Friend Radius</label>
+                <input
+                  name="friend_radius"
+                  className="form-control"
+                  value={formData.friend_radius}
+                  onChange={handleChange}
+                />
+              </div>
 
-                <button
-                    type="submit"
-                    className="btn btn-primary float-right"
-                    onSubmit={handleSubmit}
-                >
-                  Submit
-                </button>
-              </form>
-            </div>
+              <button
+                type="submit"
+                className="btn btn-primary float-right"
+                onSubmit={handleSubmit}
+              >
+                Submit
+              </button>
+            </form>
           </div>
         </div>
       </div>
+    </div>
   );
 }
 

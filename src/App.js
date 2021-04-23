@@ -55,20 +55,16 @@ function App() {
     setToken(null);
   }
 
- 
-
   return (
     <div>
-       <AuthContext.Provider value={{ login, signup, currUser, setCurrUser }}>
-         <BrowserRouter>
-          <NavBar/>
-           <Routes />
-         </BrowserRouter>
-       </AuthContext.Provider>
+      <AuthContext.Provider value={{ login, signup, currUser, setCurrUser }}>
+        <BrowserRouter>
+          <NavBar />
+          <Routes />
+        </BrowserRouter>
+      </AuthContext.Provider>
     </div>
   );
 }
 
 export default App;
-
-

@@ -74,7 +74,8 @@ function Profile() {
         <label htmlFor="email">Email</label>
         <input
           type="email"
-          id="email"
+          id="
+          email"
           onChange={handleChange}
           name="email"
           value={formData.email}

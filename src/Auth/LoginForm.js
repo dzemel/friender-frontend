@@ -25,7 +25,8 @@ function LoginForm() {
     evt.preventDefault();
     // TODO add validation
     let response = await login(formData);
-    if (response.token) {
+    console.log(response);
+    if (response) {
       setFormData(initialState);
       history.push("/");
     } else {
